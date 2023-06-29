@@ -7,6 +7,10 @@ class Match
   def add_player(player)
     @players << player
   end
+  
+  def winner
+    @players.first
+  end
 end
 
 class Player
