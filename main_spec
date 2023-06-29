@@ -4,29 +4,27 @@ require 'rubygems'
 # The part that activates bundler in your app
 require 'bundler/setup' 
 
-# require your gems as usual
-require 'some_gem'
-
-# ...or require all the gems in one statement
-Bundler.require
-require faker 
-require rspec
-require_relative 'main.rb'
+require 'faker' 
+require 'rspec'
+require_relative 'main'
 
 describe "main" do
   let(:match) { Match.new }
   let(:player1) { Player.new }
+  let(:player2) { Player.new }
   describe 'match' do
     it 'should exist' do
       expect(match).to be_instance_of(Match)
     end
 
     it 'should allow us to add players' do
-      match.add_player(player)
-      expect(match.players.count).to eql(1)
+      match.add_player(player1)
+      expect(match.players).to include(player1)
     end
 
     it 'should have two players' do
+      match.add_player(player1)
+      match.add_player(player2)
       expect(match.players.count).to eql(2)
     end
 
